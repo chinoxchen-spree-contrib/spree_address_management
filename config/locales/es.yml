@@ -1,0 +1,7 @@
+es:
+  activerecord:
+    attributes:
+      spree/address:
+        global: Global
+  spree:
+    new_address: Nueva dirección

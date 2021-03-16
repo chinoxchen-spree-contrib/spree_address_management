@@ -1,0 +1,48 @@
+<% content_for :page_title do %>
+  <%= Spree.t(plural_resource_name(Spree::Address)) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_address), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_address' } %>
+<% end if can?(:create, Spree::Address) %>
+
+<div data-hook='admin_address'>
+  <%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
+  <% if @collection.any? %>
+    <table class="table sortable" data-hook="address_table">
+      <thead>
+        <tr data-hook="address_header">
+          <th>
+            <%= sort_link @search, :firstname, I18n.t(:firstname, scope: 'activerecord.attributes.spree/address') %>
+          </th>
+          <th>
+            <%= I18n.t(:lastname, scope: 'activerecord.attributes.spree/address') %>
+          </th>
+          </th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @collection.each do |address| %>
+          <tr id="<%= spree_dom_id address %>" data-hook="logisic_operators_row">
+            <td>
+              <%= address.firstname %>
+            </td>
+            <td>
+              <%= address.lastname %>
+            </td>
+            <td class="actions actions-2 text-right">
+              <%= link_to_edit address, no_text: true, class: 'edit' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="alert alert-info alpha twelve columns no-objects-found">
+      <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Address)) %>
+    </div>
+  <% end %>
+</div>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>

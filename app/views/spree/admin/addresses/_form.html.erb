@@ -1,0 +1,8 @@
+<%= render partial: 'spree/shared/error_messages', locals: { target: @address } %>
+
+
+<%= form_for @address, html: { id: 'managament_form_address' } do |f| %>
+  <%= render 'spree/admin/shared/address_form', f: f, type: 'shipping' %>
+
+  <%= f.submit t(:save, scope: :address_book), class: 'btn btn-primary btn-block spree-btn mb-5' %>
+<% end %>

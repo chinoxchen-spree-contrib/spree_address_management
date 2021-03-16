@@ -1,0 +1,11 @@
+<% content_for :page_title do %>
+  <%= link_to plural_resource_name(Spree::Address), spree.admin_addresses_path %> /
+  <%= Spree.t(:new_address) %>
+<% end %>
+
+<%= form_for [:admin, @address] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/new_resource_links' %>
+  </fieldset>
+<% end %>
