@@ -13,6 +13,22 @@ module SpreeAddressManagement
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
+
+      unless Spree::PermittedAttributes.address_attributes.include?(:latitud)
+        Spree::PermittedAttributes.address_attributes << :latitud
+      end
+
+      unless Spree::PermittedAttributes.address_attributes.include?(:longitud)
+        Spree::PermittedAttributes.address_attributes << :longitud
+      end
+
+      unless Spree::PermittedAttributes.stock_location_attributes.include?(:latitud)
+        Spree::PermittedAttributes.stock_location_attributes << :latitud
+      end
+
+      unless Spree::PermittedAttributes.stock_location_attributes.include?(:longitud)
+        Spree::PermittedAttributes.stock_location_attributes << :longitud
+      end
     end
 
     config.to_prepare(&method(:activate).to_proc)
