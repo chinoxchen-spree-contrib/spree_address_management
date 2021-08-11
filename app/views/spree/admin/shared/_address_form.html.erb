@@ -36,7 +36,7 @@
       <div class="field <%= "#{type}-row" %>">
         <%= f.label :county_id, Spree.t(:county) %>
         <span id="<%= s_or_b %>county">
-          <%= f.collection_select :county_id, f.object.state.present? ? f.object.state.counties.sort : @counties, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+          <%= f.collection_select :county_id, f.object.state.present? ? f.object.state.counties.sort : Spree::County.order(:name), :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
         </span>
       </div>
     <% elsif field == "global" %>
