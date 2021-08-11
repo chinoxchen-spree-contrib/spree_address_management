@@ -14,20 +14,20 @@ module SpreeAddressManagement
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
 
-      unless Spree::PermittedAttributes.address_attributes.include?(:latitud)
-        Spree::PermittedAttributes.address_attributes << :latitud
+      unless Spree::PermittedAttributes.address_attributes.include?(:latitude)
+        Spree::PermittedAttributes.address_attributes << :latitude
       end
 
-      unless Spree::PermittedAttributes.address_attributes.include?(:longitud)
-        Spree::PermittedAttributes.address_attributes << :longitud
+      unless Spree::PermittedAttributes.address_attributes.include?(:longitude)
+        Spree::PermittedAttributes.address_attributes << :longitude
       end
 
-      unless Spree::PermittedAttributes.stock_location_attributes.include?(:latitud)
-        Spree::PermittedAttributes.stock_location_attributes << :latitud
+      unless Spree::PermittedAttributes.stock_location_attributes.include?(:latitude)
+        Spree::PermittedAttributes.stock_location_attributes << :latitude
       end
 
-      unless Spree::PermittedAttributes.stock_location_attributes.include?(:longitud)
-        Spree::PermittedAttributes.stock_location_attributes << :longitud
+      unless Spree::PermittedAttributes.stock_location_attributes.include?(:longitude)
+        Spree::PermittedAttributes.stock_location_attributes << :longitude
       end
     end
 
