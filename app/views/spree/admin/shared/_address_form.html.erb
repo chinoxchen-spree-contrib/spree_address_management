@@ -45,6 +45,13 @@
           <%= f.check_box :global, value: true, checked: true %>
           <%= f.label :global %>
         <% end %>
+
+        <% if @stores.count > 1 %>
+          <%= f.field_container :stores, class: ['form-group'] do %>
+            <%= f.label :store_address, Spree.t(:stores) %>
+            <%= collection_select(:address, :store_ids, @stores, :id, :unique_name, {}, { multiple: true, class: 'select2' }) %>
+          <% end %>
+        <% end %>
       <% end %>
     <% else %>
       <%= field_container (s_or_b + '_' + field), nil, class: ["form-group", "#{type}-row"] do %>

@@ -2,7 +2,8 @@ module Spree
   module Admin
     class AddressesController < ResourceController
       helper Spree::Admin::AddressesHelper
-      before_action :counties
+      before_action :set_counties
+      before_action :set_stores
 
       def new
         @address = Spree::Address.default
@@ -16,13 +17,17 @@ module Spree
 
       def collection
         params[:q] = {} if params[:q].blank?
-        address = super
-        @search = address.globals.ransack(params[:q])
+        store = current_store.partner? ? Spree::Store.default : current_store
+        @search = store.addresses.globals.ransack(params[:q])
         @collection = @search.result.page(params[:page]).per(params[:per_page])
       end
 
-      def counties
+      def set_counties
         @counties = Spree::State.find_by(abbr: 'RM').counties.sort
+      end
+
+      def set_stores
+        @stores = Spree::Store.all
       end
     end
   end
