@@ -7,5 +7,7 @@ module Spree
 
     validates :store, :address, presence: true
     validates :store_id, uniqueness: { scope: :address_id }
+
+    scope :by_user_and_store, ->(user_id, store_id) { joins(:address).where(address: { user_id: user_id }).where(store_id: store_id) }
   end
 end
