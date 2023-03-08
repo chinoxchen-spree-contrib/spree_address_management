@@ -53,6 +53,13 @@
           <% end %>
         <% end %>
       <% end %>
+    <% elsif field == "hide_in_frontend" %>
+      <% if params[:controller] == 'spree/admin/addresses' %>
+        <%= field_container (s_or_b + '_' + field), :hide_in_frontend, class: ["form-group", "#{type}-row"] do %>
+          <%= f.check_box :hide_in_frontend %>
+          <%= f.label :hide_in_frontend %>
+        <% end %>
+      <% end %>
     <% else %>
       <%= field_container (s_or_b + '_' + field), nil, class: ["form-group", "#{type}-row"] do %>
         <%= f.label field, Spree.t(field) %>

@@ -29,6 +29,10 @@ module SpreeAddressManagement
       unless Spree::PermittedAttributes.stock_location_attributes.include?(:longitude)
         Spree::PermittedAttributes.stock_location_attributes << :longitude
       end
+
+      unless Spree::PermittedAttributes.address_attributes.include?(:hide_in_frontend)
+        Spree::PermittedAttributes.address_attributes << :hide_in_frontend
+      end
     end
 
     config.to_prepare(&method(:activate).to_proc)

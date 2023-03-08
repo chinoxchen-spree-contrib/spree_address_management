@@ -3,5 +3,6 @@ es:
     attributes:
       spree/address:
         global: Global
+        hide_in_frontend: Ocultar en frontend
   spree:
     new_address: Nueva dirección
